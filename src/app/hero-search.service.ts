@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
-
 import { map } from 'rxjs/operators';
 
 import { Hero } from './hero';
@@ -13,7 +12,7 @@ export class HeroSearchService {
 
   search(term: string): Observable<Hero[]> {
     return this.http
-      .get(`app/heroes/?name=${term}`, { responseType: 'json' })
+      .get(`api/heroes/?name=${term}`, { responseType: 'json' })
       .pipe(map(response => response as Hero[]));
   }
 }

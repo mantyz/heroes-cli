@@ -46,7 +46,7 @@ export class HeroesComponent implements OnInit {
     this.router.navigate(['/detail', this.selectedHero.id]);
   }
   getHeroes(): void {
-    this.heroService.getHeroes().then(heroes => { this.heroes = heroes; /*console.log(this.heroes);*/ });
+    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
   }
   ngOnInit(): void {
     this.getHeroes();

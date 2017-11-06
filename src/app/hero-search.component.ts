@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
-import { ArrayObservable } from 'rxjs/observable/ArrayObservable';
 import { Subject } from 'rxjs/Subject';
-
 import { of } from 'rxjs/observable/of';
 import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
@@ -34,10 +32,10 @@ export class HeroSearchComponent implements OnInit {
     this.heroes = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(term => term ? this.heroSearchService.search(term) : ArrayObservable.of<Hero[]>([])),
+      switchMap(term => term ? this.heroSearchService.search(term) : of<Hero[]>([])),
       catchError((error) => {
         console.log(error);
-        return ArrayObservable.of<Hero[]>([]);
+        return of<Hero[]>([]);
       }
       ));
   }
